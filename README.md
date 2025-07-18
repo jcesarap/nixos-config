@@ -10,6 +10,8 @@
 * [ ] Move all packages to Nix syntax
 * [ ] E-mail client - to get notifications on due college assignments
     * [ ] Ensure you have a comment on the config, highlighting this
+* [ ] Setup KDE Connect
+    * [ ] Add to config: To control Magn when it's connected to tv
 
 =============================================================================================
 PENDING
