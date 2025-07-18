@@ -2,17 +2,22 @@
 * Tasks fore setup are detailed here.
 
 # Backlog
-* [ ] Set user password with `passwd`
-* [ ] Sync Github
+* [x] Set user password with `passwd`
+* [x] Sync Github
 * [ ] Aliases
     * [ ] To move Nix config from cloud unto its directory
     * [ ] To edit configs
+* [ ] Move all packages to Nix syntax
+* [ ] E-mail client - to get notifications on due college assignments
+    * [ ] Ensure you have a comment on the config, highlighting this
 
 =============================================================================================
 PENDING
 
 # ================================= LOG
-* Add packages through flakes
+* [x] Add packages through flakes
+    * Research on Gemini said the flake.lock looks at the "commit" state of Nixpkgs repo, and which version packages were then... so no modification is needed.
+    * Futher explanation, isolation and improvement will be naturally explored and done with time.
 
 # ================================= TO ALIAS
 # Sync /etc/nixos/ files to ~/nixos-config
@@ -20,7 +25,7 @@ rsync -av --delete /etc/nixos/ ~/nixos-config/
 # Sync the files back to /etc/nixos from ~/nixos-config
 sudo rsync -av --delete ~/nixos-config/ /etc/nixos/
 # Automatically rebuild from the home location (by moving before building) - make it into an alias
-sudo rsync -av --delete ~/nixos-config/ /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos
+sudo rsync -av --delete --exclude '.git' ~/nixos-config/ /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos
 
 =============================================================================================
 Documentation
