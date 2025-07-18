@@ -6,6 +6,8 @@
       ./hardware-configuration.nix
     ];
 
+  # You can explore manual installation later, via CLI, on a virtual machine on (working Nix) Linux - which runs fast... as mere satttjor with perfect praticality
+
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -45,9 +47,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the LXQT Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.lxqt.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -78,7 +80,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.magn = {
@@ -105,7 +107,204 @@
     vscodium
     gh
     ranger
+    jq
+    util-linux
+    linux
+    linuxHeaders
+    haveged
+    dbus
+    wget
+    zsh
+    timeshift
+    kdePackages.sddm
+    qt5.qtquickcontrols2
+    qt5.qtgraphicaleffects
+    qt5.qtsvg
+    qt5.qtquickcontrols
+    libsForQt5.plasma-framework
+    xorg.xorgserver
+    xorg.xinit
+    xorg.xhost
+    xorg.xev
+    i3
+    ly
+    polybar
+    dmenu
+    i2c-tools
+    xorg.xset
+    xorg.xrandr
+    arandr
+    picom
+    xorg.xbacklight
+    clipnotify
+    xclip
+    parcellite
+    clipmenu
+    xdotool
+    feh
+    xf86_input_wacom
+    xarchiver
+    atool
+    unzip
+    audacity
+    postgresql
+    bc
+    python3Packages.pip
+    python3Packages.pylatexenc
+    git
+    github-cli
+    gcc
+    cmake
+    automake
+    nodejs
+    ripgrep
+    pandoc
+    cargo
+    bison
+    rsync
+    mediainfo
+    meson
+    python3
+    json_c
+    cairo
+    glib
+    go
+    openssh
+    ueberzugpp
+    python3Packages.pyqt5
+    ollama
+    xorg.libX11
+    xorg.libXrandr
+    xorg.libXi
+    xorg.libXcursor
+    xorg.libXinerama
+    iwd
+    firewalld
+    networkmanager
+    yt-dlp
+    brightnessctl
+    xwayland
+    wl-clipboard
+    rofi
+    rofi-calc
+    dunst
+    playerctl
+    alsa-utils
+    alsa-tools
+    alsa-lib
+    pipewire
+    wireplumber
+    pavucontrol
+    thermald
+    neofetch
+    acpid
+    powertop
+    glances
+    upower
+    lm_sensors
+    config.boot.kernelPackages.cpupower
+    procps
+    protonmail-bridge
+    pass
+    thunderbird
+    blueman
+    unzip
+    htop
+    w3m
+    fzf
+    findutils
+    mlocate
+    alacritty
+    kitty
+    keepassxc
+    flameshot
+    evince
+    gnome-system-monitor
+    id3v2
+    gnome-disk-utility
+    clamtk
+    calibre
+    gnome-boxes
+    xfce.thunar
+    android-tools
+    lazygit
+    micro
+    neovim
+    vlc
+    mpv
+    perlPackages.ImageExifTool
+    socat
+    mpv
+    cmus
+    speedcrunch
+    zathura
+    dropbox
+    pywal
+    i3lock-color
+    whitesur-icon-theme
+    zathura
+    texlive.combined.scheme-full
+    mesa
+    vulkan-loader
+    xorg.xf86videointel
+    intel-media-driver
+    intel-vaapi-driver
+    xdg-utils
+    xdg-desktop-portal-gtk
+    xdg-user-dirs
+    cups
+    hplip
+    system-config-printer
+    fwupd
+    iucode-tool
+    lxappearance
+    dict
+    gvfs
+    android-file-transfer
+    power-profiles-daemon
+    ncdu
+    lxqt.lxqt-policykit
+    imagemagick
+    ffmpeg
+    gst_all_1.gstreamer
+    kdePackages.okular
+    gnome-text-editor
+    noto-fonts
+    noto-fonts-emoji
+    noto-fonts-extra
+    liberation_ttf
+    dejavu_fonts
+    roboto
+    ubuntu_font_family
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
+    jetbrains-mono
   ];
+
+  boot.kernelModules = [ "acpi_call" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    acpi_call
+  ];
+
+  # ======================= NVIDIA
+  # 1. Enable OpenGL support system-wide.
+  hardware.graphics.enable = true;
+
+  # 2. Configure NVIDIA driver settings.
+  hardware.nvidia = {
+    # This enables Kernel Mode Setting (KMS).
+    # It's required for a stable experience on Wayland and modern X11.
+    modesetting.enable = true;
+
+    # Use the open-source kernel modules. Set this to `false` to use
+    # the standard proprietary driver instead.
+    open = true;
+
+    # Improves power management, especially for laptops.
+    # It allows the GPU to enter lower power states when idle.
+    powerManagement.enable = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

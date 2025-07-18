@@ -20,6 +20,9 @@ PENDING
 * [x] Add packages through flakes
     * Research on Gemini said the flake.lock looks at the "commit" state of Nixpkgs repo, and which version packages were then... so no modification is needed.
     * Futher explanation, isolation and improvement will be naturally explored and done with time.
+* [ ] Move notes on public servant tests, from Docs to Dies Novas Archive
+* [ ] neofetch to .zshrc
+    * [ ] alias clear to include neofetch - so terminal remains consistent
 
 # ================================= TO ALIAS
 # Sync /etc/nixos/ files to ~/nixos-config
@@ -27,7 +30,7 @@ rsync -av --delete /etc/nixos/ ~/nixos-config/
 # Sync the files back to /etc/nixos from ~/nixos-config
 sudo rsync -av --delete ~/nixos-config/ /etc/nixos/
 # Automatically rebuild from the home location (by moving before building) - make it into an alias
-sudo rsync -av --delete --exclude '.git' ~/nixos-config/ /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos
+sudo cp ~/nixos-config/flake.lock ~/nixos-config/flake.nix ~/nixos-config/configuration.nix /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos
 
 =============================================================================================
 Documentation
